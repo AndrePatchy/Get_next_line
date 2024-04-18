@@ -1,0 +1,22 @@
+2. Get_next_line — a function that reads a file line by line 
+
+"Everything is a file" philosophy -> this concepts allow interoperability 
+
+FD
+0 -> stdin
+1 -> stdout
+2 -> stderr
+
+TTY - teletype devices 
+Remounts to pre-internet days of unix when a computer was just a terminal that receives input and prints data. 
+
+There are 7 standard Unix file types, being the terminal a special 'character' file. Search for 'file types unix'. The point is a terminal is a file! With something like "echo Good coding > ttys002" on the ttys001 will display "Good coding" on the ttys002! 
+
+The open() function creates a new file that by standard gets the next available file descriptor. 
+
+read(3, buf, 10) -> "Read from the fd 3 into the buffer 10 bytes per call to function"
+
+The function read recalls the last position. So the first call, the function reads the first 10 bytes. The second call, the function read more 10 bytes, which are the 10-20 bytes of the sentence. It advances from the last char of the previous read. Is a smart function that can recall its position in the file. 
+
+The problem in the get_next_line function is that you do not know the amount of the chars that will be read. Thus, you do not know the size of the buffer you need.
+

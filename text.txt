@@ -1,0 +1,4 @@
+1. Lift. Notes about the Makefile:
+$(NAME): $(OBJS)
+ar rc $(NAME)
+The command (ar rc $(NAME) $(OBJS)) creates an archive (in Libft called "Libft.a") and insert the objects specified in the OBJS variable into the archive. If $(NAME) does not exist, this command creates it. If it already exists, it updates it with new object files. Why?
