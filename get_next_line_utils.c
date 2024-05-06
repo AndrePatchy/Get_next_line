@@ -1,86 +1,77 @@
 #include "get_next_line.h"
 
-size_t	ft_strlen(const char *s)
+char	*ft_strjoin(char *line, char *buffer)
 {
-	size_t	i;
-
-	i = 0;
-	while (s[i] != '\0')
-	{
-		i++;
-	}
-	return (i);
-}
-
-char	*ft_strjoin(const char *s1,const char *s2)
-{
-	size_t	i;
-	size_t	k;
-	char	*str;
-
-	str = (char *)malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
-	if (!str)
-	{
-		free(str);
-		return (NULL);
-	}
-	i = 0;
-	while (s1[i] != '\0')
-	{
-		str[i] = s1[i];
-		i++;
-	}
-	k = 0;
-	while (s2[k] != '\0')
-	{
-		str[i] = s2[k];
-		i++;
-		k++;
-	}
-	str[i] = '\0';
-	return (str);
-}
-
-void	*ft_calloc(size_t nmemb, size_t size)
-{
-	void	*p;
-
-	p = malloc(nmemb * size);
-	if (!p)
-		return (NULL);
-	ft_bzero(p, nmemb * size);
-	return (p);
-}
-
-void	ft_bzero(void *s, size_t n)
-{
-	unsigned char	*str;
-	size_t			i;
-
-	str = s;
-	i = 0;
-	while (i < n)
-	{
-		str[i] = 0;
-		i++;
-	}
-}
-
-char	*ft_strchr(const char *s, int c)
-{
+	char	*new_line;
+	int		len;
 	int		i;
-	char	*p;
+	int		k;
 
-	c = (unsigned char) c;
-	p = (char *)s;
+	len = ft_strlen(line) + ft_strlen(buffer);
+	new_line = (char *)malloc(len + 1);
+	if (!new_line)
+		return (NULL);
 	i = 0;
-	while (p[i])
+	k = 0;
+ 	while (line != NULL && line[k] != '\0')
+		new_line[i++] = line[k++];
+	k = 0;
+	while (buffer[k] != '\0')
+		new_line[i++] = buffer[k++];
+	new_line[i] = '\0';
+	free(line);
+	return (ft_cut_line(new_line));
+}
+
+char	*ft_cut_line(char *line)
+{
+	int	i;
+
+	i = 0;
+	while (line[i] != '\n' && line[i] != '\0')
+		i++;
+	if (line[i] == '\n')
+		line[++i] = '\0';
+	return (line);
+}
+
+int	ft_clear_buffer(char *buffer)
+{
+	int	i;
+	int	len_buffer;
+	int	nl;
+	int	check;
+
+	len_buffer = ft_strlen(buffer);
+	nl = 0;
+	while (buffer[nl] != '\n' && buffer[nl] != '\0')
+		nl++;
+	check = 0;
+	if (buffer[nl] == '\n')
+		check = 1;
+	i = 0;
+	while (i < len_buffer)
 	{
-		if (p[i] == c)
-			return (&p[i]);
+		if (nl + i < len_buffer)
+		{
+			buffer[i] = buffer[nl + i + 1];
+			buffer[nl + i + 1] = '\0';
+		}
+		else
+			buffer[i] = '\0';
 		i++;
 	}
-	if (c == 0)
-		return (&p[i]);
-	return (0);
+	return (check);
+}
+
+int	ft_strlen(char *string)
+{
+	int	i;
+
+	i = 0;
+	if (string == NULL)
+		return (i);
+	while (string[i] != '\0')
+		i++;
+	return (i);
 }

@@ -8,16 +8,12 @@
 #include <string.h>
 
 # ifndef BUFFER_SIZE
-# define BUFFER_SIZE 42
+# define BUFFER_SIZE 1000
 # endif 
 
 char	*get_next_line(int fd);
-size_t	ft_strlen(const char *s);
-char	*ft_strjoin(const char *s1,const char *s2);
-char	*ft_substr(char const *s, unsigned int start, size_t len);
-void	*ft_calloc(size_t nmemb, size_t size);
-void	ft_bzero(void *s, size_t n);
-char	*ft_strchr(const char *s, int c);
-char	*ft_strjoin_free(char *bucket, char *spon);
-
+char	*ft_strjoin(char *line, char *buffer);
+int		ft_clear_buffer(char *buffer);
+int     ft_strlen(char *string);
+char	*ft_cut_line(char *line);
 # endif
