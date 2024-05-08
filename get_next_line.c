@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: andos-sa <andos-sa@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/05/06 15:02:12 by andos-sa          #+#    #+#             */
+/*   Updated: 2024/05/06 17:35:59 by andos-sa         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "get_next_line.h"
 
 char	*get_next_line(int fd)
 {
 	static char	buffer[BUFFER_SIZE + 1];
-	char	*line;
-	int	bytes;
+	char		*line;
+	int			bytes;
 
 	line = NULL;
 	while (1)
@@ -33,7 +45,7 @@ char	*get_next_line(int fd)
 // 	int	fd;
 // 	char *line;
 
-// 	fd = open("lorem.txt", O_RDONLY);
+// 	fd = 42;
 // 	if (fd == -1)
 // 	{
 // 		printf("error opening file");
@@ -47,6 +59,7 @@ char	*get_next_line(int fd)
 // 			free(line);
 // 		}
 // 	}
+// 	printf("%s\n", line);
 // 	close(fd);
 // 	return (0);
 // }

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: andos-sa <andos-sa@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/05/06 15:21:18 by andos-sa          #+#    #+#             */
+/*   Updated: 2024/05/06 17:53:12 by andos-sa         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "get_next_line.h"
 
 char	*ft_strjoin(char *line, char *buffer)
@@ -10,10 +22,14 @@ char	*ft_strjoin(char *line, char *buffer)
 	len = ft_strlen(line) + ft_strlen(buffer);
 	new_line = (char *)malloc(len + 1);
 	if (!new_line)
+	{
+		if (line != NULL)
+			free(line);
 		return (NULL);
+	}
 	i = 0;
 	k = 0;
- 	while (line != NULL && line[k] != '\0')
+	while (line != NULL && line[k] != '\0')
 		new_line[i++] = line[k++];
 	k = 0;
 	while (buffer[k] != '\0')
